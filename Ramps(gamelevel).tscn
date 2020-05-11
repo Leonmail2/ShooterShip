@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://SpawnPoint.tscn" type="PackedScene" id=1]
+[ext_resource path="res://LevelGeometry.tscn" type="PackedScene" id=2]
+
+[node name="Level" type="Spatial"]
+
+[node name="LevelGeometry" parent="." instance=ExtResource( 2 )]
+transform = Transform( 11.5524, 0, 0, 0, 11.5524, 0, 0, 0, 11.5524, -11.4864, -4.52486, -71.0975 )
+
+[node name="SpawnPointRed" parent="." instance=ExtResource( 1 )]
+transform = Transform( -2.53635, 0, -2.21734e-07, 0, 2.53635, 0, 2.21734e-07, 0, -2.53635, 26.4393, 10.4153, -748.36 )
+
+[node name="SpawnPointBlue" parent="." instance=ExtResource( 1 )]
+transform = Transform( 2.53635, 0, 0, 0, 2.53635, 0, 0, 0, 2.53635, 26.4393, 10.4153, 840.914 )
+
+[node name="Lights" type="Spatial" parent="."]
+
+[node name="DirectionalLight" type="DirectionalLight" parent="Lights"]
+transform = Transform( 1, 0, 0, 0, 0.716448, 0.69764, 0, -0.69764, 0.716448, 0, 175.326, 0 )
+light_energy = 0.51
+shadow_enabled = true

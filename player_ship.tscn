@@ -1,0 +1,305 @@
+[gd_scene load_steps=23 format=2]
+
+[ext_resource path="res://player_ship.gd" type="Script" id=1]
+[ext_resource path="res://HUD.gd" type="Script" id=3]
+[ext_resource path="res://assets/good times rg.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://assets/crosshair038.png" type="Texture" id=5]
+[ext_resource path="res://assets/defaultfont.tres" type="DynamicFont" id=6]
+
+[sub_resource type="ParticlesMaterial" id=1]
+emission_shape = 1
+emission_sphere_radius = 1.0
+direction = Vector3( 0, 0, 0 )
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+radial_accel = 0.64
+
+[sub_resource type="SpatialMaterial" id=2]
+albedo_color = Color( 0.737255, 0.247059, 0.247059, 1 )
+emission_enabled = true
+emission = Color( 0.992157, 0, 0, 1 )
+emission_energy = 1.0
+emission_operator = 0
+emission_on_uv2 = false
+transmission_enabled = true
+transmission = Color( 1, 0, 0, 1 )
+
+[sub_resource type="SphereMesh" id=3]
+material = SubResource( 2 )
+radius = 0.2
+height = 0.4
+
+[sub_resource type="BoxShape" id=4]
+extents = Vector3( 3.34781, 1, 5.0243 )
+
+[sub_resource type="BoxShape" id=5]
+extents = Vector3( 2.22854, 1, 1.56967 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 38
+use_filter = true
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=7]
+size = 20
+font_data = ExtResource( 4 )
+
+[sub_resource type="ParticlesMaterial" id=8]
+render_priority = 1
+emission_shape = 1
+emission_sphere_radius = 1.55
+spread = 180.0
+gravity = Vector3( 0, 20, 0 )
+initial_velocity = 13.0
+radial_accel = 41.24
+color = Color( 1, 0.678431, 0.180392, 1 )
+
+[sub_resource type="SpatialMaterial" id=9]
+albedo_color = Color( 0.909804, 0, 0, 1 )
+
+[sub_resource type="SphereMesh" id=10]
+material = SubResource( 9 )
+radius = 0.5
+height = 1.0
+
+[sub_resource type="SpatialMaterial" id=11]
+params_depth_draw_mode = 3
+albedo_color = Color( 0.52549, 0.52549, 0.52549, 0.352941 )
+
+[sub_resource type="CapsuleMesh" id=12]
+material = SubResource( 11 )
+
+[sub_resource type="CapsuleShape" id=13]
+radius = 1.50654
+height = 7.45375
+
+[sub_resource type="BoxShape" id=14]
+extents = Vector3( 0.531088, 1, 1 )
+
+[sub_resource type="CylinderShape" id=15]
+radius = 0.751177
+height = 7.11851
+
+[sub_resource type="SphereShape" id=16]
+radius = 1.62529
+
+[sub_resource type="CapsuleShape" id=17]
+radius = 1.65518
+
+[node name="playerShip" type="KinematicBody"]
+script = ExtResource( 1 )
+mouse_sensitivity = 0.1
+
+[node name="playerCamera" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.446729, 1.5716 )
+fov = 60.0
+far = 4068.8
+
+[node name="deathCamera" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.868216, 0.496186, 0, -0.496186, 0.868216, 0, 8.77627, 9.08421 )
+fov = 95.9
+far = 4019.1
+
+[node name="gunship" type="Spatial" parent="."]
+
+[node name="mesh" type="Spatial" parent="gunship"]
+
+[node name="GunRight" type="Position3D" parent="gunship"]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 4.4956, -1.93651, -3.20137 )
+
+[node name="GunLeft" type="Position3D" parent="gunship"]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, -4.54, -1.937, -3.201 )
+
+[node name="GunRightParticles" type="Particles" parent="gunship"]
+transform = Transform( 0.5, 0, 0, 0, -2.18557e-08, -0.5, 0, 0.5, -2.18557e-08, 4.4956, -1.93651, -3.79599 )
+emitting = false
+amount = 23
+one_shot = true
+speed_scale = 20.0
+explosiveness = 1.0
+randomness = 1.0
+process_material = SubResource( 1 )
+draw_pass_1 = SubResource( 3 )
+
+[node name="GunLeftParticles" type="Particles" parent="gunship"]
+transform = Transform( 0.5, 0, 0, 0, -2.18557e-08, -0.5, 0, 0.5, -2.18557e-08, -4.54, -1.937, -3.79562 )
+emitting = false
+amount = 23
+one_shot = true
+speed_scale = 20.0
+explosiveness = 1.0
+randomness = 1.0
+process_material = SubResource( 1 )
+draw_pass_1 = SubResource( 3 )
+
+[node name="GunCast" type="RayCast" parent="gunship"]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, -1.83553, -1.69818 )
+enabled = true
+cast_to = Vector3( 0, -1000, 0 )
+collide_with_areas = true
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, -0.326008, 0.19248 )
+shape = SubResource( 4 )
+
+[node name="CollisionShape2" type="CollisionShape" parent="."]
+transform = Transform( -1.40978e-07, 0, -3.22519, 0, 0.261747, 0, 1, 0, -4.37114e-08, 0, -3.84797, 0.19248 )
+shape = SubResource( 5 )
+
+[node name="HUD" type="Spatial" parent="."]
+transform = Transform( 0.766044, 0, 0.642788, 0, 1, 0, -0.642788, 0, 0.766044, 0, 0, 0 )
+script = ExtResource( 3 )
+
+[node name="HealthBar" type="Label" parent="HUD"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -58.0
+margin_top = -46.0
+margin_right = 58.0
+custom_fonts/font = SubResource( 6 )
+text = "100%"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TimeBar" type="Label" parent="HUD"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -58.0
+margin_right = 58.0
+margin_bottom = 46.0
+custom_fonts/font = SubResource( 6 )
+text = "10:00"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Reticle" type="Sprite" parent="HUD"]
+position = Vector2( 516.081, 305.442 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 5 )
+
+[node name="KillLabel" type="Label" parent="HUD"]
+anchor_left = 0.548
+anchor_top = 0.5
+anchor_right = 0.548
+anchor_bottom = 0.5
+margin_left = -325.152
+margin_top = -154.537
+margin_right = 226.848
+margin_bottom = -117.537
+custom_fonts/font = SubResource( 7 )
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TeamScore" type="Label" parent="HUD"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = -48.0
+margin_right = 213.0
+custom_fonts/font = ExtResource( 6 )
+text = "0"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EnemyScore" type="Label" parent="HUD"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -213.0
+margin_top = -48.0
+custom_fonts/font = ExtResource( 6 )
+text = "0"
+align = 2
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FlameParticles" type="Particles" parent="."]
+emitting = false
+amount = 200
+lifetime = 1.17
+one_shot = true
+explosiveness = 0.97
+randomness = 0.63
+local_coords = false
+process_material = SubResource( 8 )
+draw_pass_1 = SubResource( 10 )
+
+[node name="SmokeParticles" type="Particles" parent="."]
+emitting = false
+amount = 70
+lifetime = 2.41
+one_shot = true
+explosiveness = 0.86
+local_coords = false
+process_material = SubResource( 8 )
+draw_pass_1 = SubResource( 12 )
+
+[node name="Area" type="RigidBody" parent="."]
+mode = 1
+can_sleep = false
+
+[node name="CollisionShape" type="CollisionShape" parent="Area"]
+transform = Transform( -1.55682e-08, -0.356159, 0, 1, -4.37114e-08, 0, 0, 0, 1, 4.42904, -1.62609, 2.42413 )
+shape = SubResource( 13 )
+disabled = true
+
+[node name="CollisionShape2" type="CollisionShape" parent="Area"]
+transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 2.94935, -1.20924, 2.42413 )
+shape = SubResource( 14 )
+disabled = true
+
+[node name="CollisionShape3" type="CollisionShape" parent="Area"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 2.12951, -2.9974, 1.89683 )
+shape = SubResource( 15 )
+disabled = true
+
+[node name="CollisionShape7" type="CollisionShape" parent="Area"]
+transform = Transform( 1.58678e-08, 0.363014, 0, 1, -4.37114e-08, 0, 0, 0, 1, -4.46532, -1.62609, 2.42413 )
+shape = SubResource( 13 )
+disabled = true
+
+[node name="CollisionShape6" type="CollisionShape" parent="Area"]
+transform = Transform( 4.45526e-08, 1.01925, 0, 1, -4.37114e-08, 0, 0, 0, 1, -2.95716, -1.20924, 2.42413 )
+shape = SubResource( 14 )
+disabled = true
+
+[node name="CollisionShape5" type="CollisionShape" parent="Area"]
+transform = Transform( -1.01925, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -2.12154, -2.9974, 1.89683 )
+shape = SubResource( 15 )
+disabled = true
+
+[node name="CollisionShape4" type="CollisionShape" parent="Area"]
+transform = Transform( 1.25464, 0, 0, 0, 1.35795, 0, 0, 0, 2.19052, 0, -0.405318, 1.78504 )
+shape = SubResource( 16 )
+disabled = true
+
+[node name="CollisionShape8" type="CollisionShape" parent="Area"]
+transform = Transform( -1.05131e-08, -0.240512, 0, 1, -4.37114e-08, 0, 0, 0, 1.24234, -5.82642, -2.46639, 3.6216 )
+shape = SubResource( 17 )
+disabled = true
+
+[node name="CollisionShape9" type="CollisionShape" parent="Area"]
+transform = Transform( -1.05131e-08, -0.240512, 0, 1, -4.37114e-08, 0, 0, 0, 1.24234, 5.81757, -2.46639, 3.6216 )
+shape = SubResource( 17 )
+disabled = true
+
+[node name="HealthTimer" type="Timer" parent="."]
+
+[node name="DeathTimer" type="Timer" parent="."]
+
+[node name="CooldownTimer" type="Timer" parent="."]
+wait_time = 0.1
+[connection signal="timeout" from="CooldownTimer" to="." method="_on_CooldownTimer_timeout"]
