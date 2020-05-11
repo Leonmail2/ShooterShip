@@ -28,10 +28,15 @@ var weapon_cooldown = true
 var last_side = "left"
 export var damage = -50
 
+<<<<<<< HEAD
 var movement_enabled = false
 
 var team = "blue"
 onready var username = get_parent().username
+=======
+var team = "red"
+export var player_name = "Leonmail"
+>>>>>>> 59f11d5... initial commit
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$playerCamera.current = true
@@ -42,11 +47,17 @@ func _ready():
 	if team == "blue":
 		node = preload("res://assets/ShipBlueInterior.tscn")
 		$gunship/mesh.add_child(node.instance())
+<<<<<<< HEAD
 func show_ship():
 	$gunship.show()
 	
 func fire_weapon():
 	if weapon_cooldown == true and movement_enabled == true:
+=======
+		
+func fire_weapon():
+	if weapon_cooldown == true:
+>>>>>>> 59f11d5... initial commit
 		weapon_cooldown = false
 		$CooldownTimer.start(0.3)
 		print("fire!")
@@ -70,7 +81,11 @@ func _on_CooldownTimer_timeout():
 
 func hit(player):
 	add_health(damage)
+<<<<<<< HEAD
 	if health <= 0:
+=======
+	if health == 0:
+>>>>>>> 59f11d5... initial commit
 		death(player)
 
 func add_health(new):
@@ -95,11 +110,18 @@ func death(killer_name):
 	speed = 0
 	direction = Vector3(0,0,0)
 	$HUD.killed_by(killer_name)
+<<<<<<< HEAD
 	yield($DeathTimer,"timeout")
 	emit_signal("dead")
 
 func _input(event):
 	if event is InputEventMouseMotion and movement_enabled:
+=======
+	
+
+func _input(event):
+	if event is InputEventMouseMotion:
+>>>>>>> 59f11d5... initial commit
 		self.rotate_y(deg2rad(-event.relative.x * mouse_sensitivity))
 		tilt += -event.relative.x * 0.065
 
@@ -147,8 +169,12 @@ func _physics_process(delta):
 	velocity += gravity * delta * basis.y * alive
 	velocity.x = direction.x
 	velocity.z = direction.z
+<<<<<<< HEAD
 	if movement_enabled == true:
 		velocity = move_and_slide(velocity,Vector3(0,1,0))
+=======
+	velocity = move_and_slide(velocity,Vector3(0,1,0))
+>>>>>>> 59f11d5... initial commit
 
 
 

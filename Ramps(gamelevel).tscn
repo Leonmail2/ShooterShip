@@ -10,11 +10,17 @@ transform = Transform( 11.5524, 0, 0, 0, 11.5524, 0, 0, 0, 11.5524, -11.4864, -4
 
 [node name="SpawnPointRed" parent="." instance=ExtResource( 1 )]
 transform = Transform( -2.53635, 0, -2.21734e-07, 0, 2.53635, 0, 2.21734e-07, 0, -2.53635, 26.4393, 10.4153, -748.36 )
+<<<<<<< HEAD
 team = "red"
 
 [node name="SpawnPointBlue" parent="." instance=ExtResource( 1 )]
 transform = Transform( 2.53635, 0, 0, 0, 2.53635, 0, 0, 0, 2.53635, 26.4393, 10.4153, 840.914 )
 team = "blue"
+=======
+
+[node name="SpawnPointBlue" parent="." instance=ExtResource( 1 )]
+transform = Transform( 2.53635, 0, 0, 0, 2.53635, 0, 0, 0, 2.53635, 26.4393, 10.4153, 840.914 )
+>>>>>>> 59f11d5... initial commit
 
 [node name="Lights" type="Spatial" parent="."]
 

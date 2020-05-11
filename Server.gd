@@ -5,6 +5,7 @@ extends Spatial
 # var a = 2
 # var b = "text"
 
+<<<<<<< HEAD
 export var max_connections = 6
 export var minimum_players = 1
 var players = []
@@ -31,6 +32,19 @@ func _ready():
 
 func init_server(ip,port):
 	network = NetworkedMultiplayerENet.new()
+=======
+export var port = 3452
+export var max_connections = 4
+var players = []
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+func init_server(ip):
+	var network = NetworkedMultiplayerENet.new()
+>>>>>>> 59f11d5... initial commit
 	network.create_server(port,max_connections)
 	get_tree().set_network_peer(network)
 	
@@ -38,6 +52,7 @@ func init_server(ip,port):
 	network.connect("peer_disconnected",self,"_peer_disconnected")
 
 func _peer_connected(id):
+<<<<<<< HEAD
 	players.append(player.new(id))
 	for item in players:
 		rpc_id(item.id,"update_player_list",players)
@@ -70,3 +85,16 @@ func start_game(level):
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	start_game("Ramps")
+=======
+	pass
+
+func _peer_disconnected(id):
+	pass
+
+remote func sync_input(player_name):
+	if player_name in players:
+		pass
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+#	pass
+>>>>>>> 59f11d5... initial commit

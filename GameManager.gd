@@ -4,6 +4,7 @@ extends Spatial
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
+<<<<<<< HEAD
 var players = []
 onready var username = get_parent().username
 var client
@@ -12,6 +13,10 @@ func _ready():
 	pass
 
 func load_level(level_name):
+=======
+
+func new_game(level_name):
+>>>>>>> 59f11d5... initial commit
 	var level
 	if level_name == "Ramps":
 		level = preload("res://Ramps(gamelevel).tscn")
@@ -21,6 +26,7 @@ func load_level(level_name):
 		level = preload("res://Ramps(gamelevel).tscn")
 	add_child(level.instance())
 
+<<<<<<< HEAD
 # Called when the node enters the scene tree for the first time.
 
 func connect_to_server(ip,port):
@@ -57,3 +63,20 @@ remote func start_game(level):
 #	pass
 func _on_player_dead():
 	$Level/spa
+=======
+func new_player_instance():
+	pass
+
+func send_hit(player_name):
+	pass
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	new_game("Ramps")
+
+func _process(delta):
+	pass
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+#	pass
+>>>>>>> 59f11d5... initial commit

@@ -1,0 +1,39 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://SpawnPoint.gd" type="Script" id=1]
+
+[sub_resource type="BoxShape" id=1]
+
+[node name="SpawnPoint" type="Spatial"]
+script = ExtResource( 1 )
+
+[node name="Area1" type="Area" parent="."]
+transform = Transform( 0.99464, 0, 0, 0, 0.99464, 0, 0, 0, 0.99464, 0, 0, 0 )
+
+[node name="Position1" type="Position3D" parent="Area1"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Area1"]
+transform = Transform( 3.64149, 0, 0, 0, 3.64149, 0, 0, 0, 3.64149, 0, 0, -4.97071 )
+shape = SubResource( 1 )
+disabled = true
+
+[node name="Area2" type="Area" parent="."]
+
+[node name="Position2" type="Position3D" parent="Area2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 6 )
+
+[node name="CollisionShape2" type="CollisionShape" parent="Area2"]
+transform = Transform( 3.64149, 0, 0, 0, 3.64149, 0, 0, 0, 3.64149, -7.0645, 0, 6.10284 )
+shape = SubResource( 1 )
+disabled = true
+
+[node name="Area3" type="Area" parent="."]
+
+[node name="Position3" type="Position3D" parent="Area3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 6 )
+
+[node name="CollisionShape3" type="CollisionShape" parent="Area3"]
+transform = Transform( 3.64149, 0, 0, 0, 3.64149, 0, 0, 0, 3.64149, 5.87992, 0, 6.19458 )
+shape = SubResource( 1 )
+disabled = true
