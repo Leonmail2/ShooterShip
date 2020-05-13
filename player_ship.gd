@@ -28,8 +28,8 @@ var weapon_cooldown = true
 var last_side = "left"
 export var damage = -50
 
-var team = "red"
-export var player_name = "Leonmail"
+var team = "neutral"
+onready var username = get_node("Main").username
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$playerCamera.current = true
@@ -40,7 +40,9 @@ func _ready():
 	if team == "blue":
 		node = preload("res://assets/ShipBlueInterior.tscn")
 		$gunship/mesh.add_child(node.instance())
-		
+func show_ship():
+	$gunship.show()
+	
 func fire_weapon():
 	if weapon_cooldown == true:
 		weapon_cooldown = false
@@ -66,7 +68,7 @@ func _on_CooldownTimer_timeout():
 
 func hit(player):
 	add_health(damage)
-	if health == 0:
+	if health <= 0:
 		death(player)
 
 func add_health(new):
@@ -91,7 +93,8 @@ func death(killer_name):
 	speed = 0
 	direction = Vector3(0,0,0)
 	$HUD.killed_by(killer_name)
-	
+	yield($DeathTimer,"timeout")
+	emit_signal("dead")
 
 func _input(event):
 	if event is InputEventMouseMotion:
