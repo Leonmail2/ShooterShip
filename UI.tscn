@@ -1,0 +1,82 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://MainMenu.gd" type="Script" id=1]
+[ext_resource path="res://assets/defaultfont.tres" type="DynamicFont" id=2]
+
+[node name="UI" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="."]
+margin_right = 1024.0
+margin_bottom = 600.0
+
+[node name="titleScreen" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="titleScreen"]
+margin_top = 234.0
+margin_right = 1024.0
+margin_bottom = 365.0
+size_flags_vertical = 4
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="titleScreen/HBoxContainer"]
+margin_left = 347.0
+margin_right = 677.0
+margin_bottom = 131.0
+size_flags_horizontal = 0
+
+[node name="Title" type="Label" parent="titleScreen/HBoxContainer/VBoxContainer"]
+margin_right = 330.0
+margin_bottom = 37.0
+custom_fonts/font = ExtResource( 2 )
+text = "Shooter Ship"
+align = 1
+
+[node name="CreateServer" type="Button" parent="titleScreen/HBoxContainer/VBoxContainer"]
+margin_top = 41.0
+margin_right = 330.0
+margin_bottom = 84.0
+custom_fonts/font = ExtResource( 2 )
+text = "Join Server"
+
+[node name="JoinGame" type="Button" parent="titleScreen/HBoxContainer/VBoxContainer"]
+margin_top = 88.0
+margin_right = 330.0
+margin_bottom = 131.0
+custom_fonts/font = ExtResource( 2 )
+text = "Create Server"
+
+[node name="textScreen" type="MarginContainer" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="textScreen"]
+margin_right = 1024.0
+margin_bottom = 600.0
+
+[node name="Label" type="Label" parent="textScreen/CenterContainer"]
+margin_left = 409.0
+margin_top = 281.0
+margin_right = 614.0
+margin_bottom = 318.0
+custom_fonts/font = ExtResource( 2 )
+text = "TEXT HERE"
+align = 1
+[connection signal="button_up" from="titleScreen/HBoxContainer/VBoxContainer/CreateServer" to="." method="_on_CreateServer_button_up"]
+[connection signal="button_up" from="titleScreen/HBoxContainer/VBoxContainer/JoinGame" to="." method="_on_JoinGame_button_up"]

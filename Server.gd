@@ -5,8 +5,8 @@ extends Spatial
 # var a = 2
 # var b = "text"
 
-export var port = 3452
 export var max_connections = 6
+export var minimum_players = 1
 var players = []
 var network
 
@@ -32,7 +32,7 @@ class player:
 func _ready():
 	pass # Replace with function body.
 
-func init_server(ip):
+func init_server(ip,port):
 	network = NetworkedMultiplayerENet.new()
 	network.create_server(port,max_connections)
 	get_tree().set_network_peer(network)
@@ -53,6 +53,11 @@ remote func sync_info(username):
 	for item in players:
 		if item.id == id:
 			players.item.set_username(username)
+
+func start_game(level):
+	if players.size() > minimum_players:
+		for item in players:
+			rpc_id(item.id,"start_game",level)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass

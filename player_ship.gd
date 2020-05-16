@@ -28,8 +28,10 @@ var weapon_cooldown = true
 var last_side = "left"
 export var damage = -50
 
+var movement_enabled = false
+
 var team = "neutral"
-onready var username = get_node("Main").username
+onready var username = get_parent().username
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$playerCamera.current = true
@@ -44,7 +46,7 @@ func show_ship():
 	$gunship.show()
 	
 func fire_weapon():
-	if weapon_cooldown == true:
+	if weapon_cooldown == true and movement_enabled == true:
 		weapon_cooldown = false
 		$CooldownTimer.start(0.3)
 		print("fire!")
@@ -97,7 +99,7 @@ func death(killer_name):
 	emit_signal("dead")
 
 func _input(event):
-	if event is InputEventMouseMotion:
+	if event is InputEventMouseMotion and movement_enabled:
 		self.rotate_y(deg2rad(-event.relative.x * mouse_sensitivity))
 		tilt += -event.relative.x * 0.065
 
@@ -145,7 +147,8 @@ func _physics_process(delta):
 	velocity += gravity * delta * basis.y * alive
 	velocity.x = direction.x
 	velocity.z = direction.z
-	velocity = move_and_slide(velocity,Vector3(0,1,0))
+	if movement_enabled == true:
+		velocity = move_and_slide(velocity,Vector3(0,1,0))
 
 
 

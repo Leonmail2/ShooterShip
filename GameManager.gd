@@ -4,10 +4,11 @@ extends Spatial
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
-onready var players = get_parent().players
+var players = []
+onready var username = get_parent().username
 var client
 
-func new_game(level_name):
+func load_level(level_name):
 	var level
 	if level_name == "Ramps":
 		level = preload("res://Ramps(gamelevel).tscn")
@@ -19,9 +20,9 @@ func new_game(level_name):
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	new_game("Ramps")
+	pass
 
-func connect_to_server(ip,port = 3452):
+func connect_to_server(ip,port):
 	client = NetworkedMultiplayerENet.new()
 	client.create_client(ip,port)
 	get_tree().set_network_peer(client)
@@ -41,6 +42,10 @@ remote func update_self_health(modifier):
 
 func _process(delta):
 	pass
+
+remote func start_game(level):
+	load_level(level)
+	$playerShip.movement_enabled = true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
