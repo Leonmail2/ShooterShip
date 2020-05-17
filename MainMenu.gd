@@ -35,7 +35,12 @@ func hide_display_text():
 	$textScreen.hide()
 
 func _on_CreateServer_button_up():
+	close_title_screen()
+	display_text("Loading...")
 	emit_signal("start_server")
 
 func _on_JoinGame_button_up():
-	emit_signal("join_server")
+	close_title_screen()
+	display_text("Loading...")
+	emit_signal("join_server",$titleScreen/HBoxContainer/VBoxContainer/HBoxContainer/IP.text,int($titleScreen/HBoxContainer/VBoxContainer/HBoxContainer/Port.text))
+	

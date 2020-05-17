@@ -30,7 +30,11 @@ class player:
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	get_tree().connect("network_peer_connected", self, "_player_connected")
+	get_tree().connect("network_peer_disconnected", self, "_player_disconnected")
+	get_tree().connect("connected_to_server", self, "_connected_ok")
+	get_tree().connect("connection_failed", self, "_connected_fail")
+	get_tree().connect("server_disconnected", self, "_server_disconnected")
 
 func init_server(ip,port):
 	network = NetworkedMultiplayerENet.new()
@@ -42,6 +46,8 @@ func init_server(ip,port):
 
 func _peer_connected(id):
 	players.append(player.new(id))
+	for item in players:
+		rset_id(item.id,"players",players)
 
 func _peer_disconnected(id):
 	for item in players:

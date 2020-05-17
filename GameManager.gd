@@ -8,6 +8,9 @@ var players = []
 onready var username = get_parent().username
 var client
 
+func _ready():
+	pass
+
 func load_level(level_name):
 	var level
 	if level_name == "Ramps":
@@ -19,8 +22,6 @@ func load_level(level_name):
 	add_child(level.instance())
 
 # Called when the node enters the scene tree for the first time.
-func _ready():
-	pass
 
 func connect_to_server(ip,port):
 	client = NetworkedMultiplayerENet.new()
@@ -46,6 +47,7 @@ func _process(delta):
 remote func start_game(level):
 	load_level(level)
 	$playerShip.movement_enabled = true
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

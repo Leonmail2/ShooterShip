@@ -1,4 +1,4 @@
-extends Spatial
+extends Node2D
 
 
 # Declare member variables here. Examples:
@@ -8,7 +8,7 @@ extends Spatial
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	hide()
 func update_enemy_score(new_score):
 	pass
 	
@@ -29,4 +29,5 @@ func killed_by(killer):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	$Reticle.rotation += deg2rad(90 * delta)
+	$Reticle.position.x = int(get_viewport().size.x / 2)
+	$Reticle.position.y = int(get_viewport().size.y / 2)
