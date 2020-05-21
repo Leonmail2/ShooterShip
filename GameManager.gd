@@ -27,7 +27,10 @@ func connect_to_server(ip,port):
 	client = NetworkedMultiplayerENet.new()
 	client.create_client(ip,port)
 	get_tree().set_network_peer(client)
-	rpc_id(1,"sync_info",get_parent().username)
+	get_parent().get_node("Server").rpc_id(1,"sync_info",get_parent().username)
+
+remote func update_player_list(new_list):
+	players = new_list
 
 func update_self_movement(location,tilt,rotate):
 	pass

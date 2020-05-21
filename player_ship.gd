@@ -30,7 +30,7 @@ export var damage = -50
 
 var movement_enabled = false
 
-var team = "neutral"
+var team = "blue"
 onready var username = get_parent().username
 # Called when the node enters the scene tree for the first time.
 func _ready():
