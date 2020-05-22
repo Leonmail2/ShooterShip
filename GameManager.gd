@@ -23,7 +23,7 @@ func send_hit(player_name):
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	new_game("Ramps")
+	pass
 
 func _process(delta):
 	pass

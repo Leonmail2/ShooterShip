@@ -247,51 +247,51 @@ local_coords = false
 process_material = SubResource( 8 )
 draw_pass_1 = SubResource( 12 )
 
-[node name="Area" type="RigidBody" parent="."]
+[node name="collider" type="RigidBody" parent="."]
 mode = 1
 can_sleep = false
 
-[node name="CollisionShape" type="CollisionShape" parent="Area"]
+[node name="CollisionShape" type="CollisionShape" parent="collider"]
 transform = Transform( -1.55682e-08, -0.356159, 0, 1, -4.37114e-08, 0, 0, 0, 1, 4.42904, -1.62609, 2.42413 )
 shape = SubResource( 13 )
 disabled = true
 
-[node name="CollisionShape2" type="CollisionShape" parent="Area"]
+[node name="CollisionShape2" type="CollisionShape" parent="collider"]
 transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 2.94935, -1.20924, 2.42413 )
 shape = SubResource( 14 )
 disabled = true
 
-[node name="CollisionShape3" type="CollisionShape" parent="Area"]
+[node name="CollisionShape3" type="CollisionShape" parent="collider"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 2.12951, -2.9974, 1.89683 )
 shape = SubResource( 15 )
 disabled = true
 
-[node name="CollisionShape7" type="CollisionShape" parent="Area"]
+[node name="CollisionShape7" type="CollisionShape" parent="collider"]
 transform = Transform( 1.58678e-08, 0.363014, 0, 1, -4.37114e-08, 0, 0, 0, 1, -4.46532, -1.62609, 2.42413 )
 shape = SubResource( 13 )
 disabled = true
 
-[node name="CollisionShape6" type="CollisionShape" parent="Area"]
+[node name="CollisionShape6" type="CollisionShape" parent="collider"]
 transform = Transform( 4.45526e-08, 1.01925, 0, 1, -4.37114e-08, 0, 0, 0, 1, -2.95716, -1.20924, 2.42413 )
 shape = SubResource( 14 )
 disabled = true
 
-[node name="CollisionShape5" type="CollisionShape" parent="Area"]
+[node name="CollisionShape5" type="CollisionShape" parent="collider"]
 transform = Transform( -1.01925, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -2.12154, -2.9974, 1.89683 )
 shape = SubResource( 15 )
 disabled = true
 
-[node name="CollisionShape4" type="CollisionShape" parent="Area"]
+[node name="CollisionShape4" type="CollisionShape" parent="collider"]
 transform = Transform( 1.25464, 0, 0, 0, 1.35795, 0, 0, 0, 2.19052, 0, -0.405318, 1.78504 )
 shape = SubResource( 16 )
 disabled = true
 
-[node name="CollisionShape8" type="CollisionShape" parent="Area"]
+[node name="CollisionShape8" type="CollisionShape" parent="collider"]
 transform = Transform( -1.05131e-08, -0.240512, 0, 1, -4.37114e-08, 0, 0, 0, 1.24234, -5.82642, -2.46639, 3.6216 )
 shape = SubResource( 17 )
 disabled = true
 
-[node name="CollisionShape9" type="CollisionShape" parent="Area"]
+[node name="CollisionShape9" type="CollisionShape" parent="collider"]
 transform = Transform( -1.05131e-08, -0.240512, 0, 1, -4.37114e-08, 0, 0, 0, 1.24234, 5.81757, -2.46639, 3.6216 )
 shape = SubResource( 17 )
 disabled = true
